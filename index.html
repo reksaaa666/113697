@@ -2,37 +2,99 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maaf Ya...</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: #f7f7f7;
-        padding: 40px;
-        text-align: center;
+        font-family: "Poppins", sans-serif;
+        background: #FFC0CB;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
     }
-    .box {
+    .card {
         background: white;
+        width: 90%;
+        max-width: 420px;
         padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        max-width: 500px;
-        margin: auto;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.15);
+        text-align: center;
+        animation: fadeIn 1.2s ease;
+        position: relative;
     }
     h1 {
-        color: #e63946;
+        color: #ff5c8a;
+        margin-bottom: 10px;
     }
     p {
         font-size: 18px;
-        line-height: 1.6;
+        color: #444;
+        margin-top: 0;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff6fa5;
+        transform: rotate(45deg);
+        animation: floatUp 6s infinite ease-in;
+        opacity: 0.7;
+    }
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff6fa5;
+        border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+        100% { transform: translateY(-200px) rotate(45deg); opacity: 0; }
     }
 </style>
 </head>
 <body>
-    <div class="box">
-        <h1>Maaf Ya...</h1>
-        <p>Aku cuma mau bilang aku bener-bener minta maaf.</p>
-        <p>Aku sadar, aku salah. Dan aku harap kamu mau kasih aku kesempatan untuk memperbaiki semuanya.</p>
-        <p><strong>Terima kasih sudah membaca.</strong></p>
-    </div>
+
+<div class="card">
+    <h1>Maaf ya...</h1>
+    <p>Gua tau tadi bikin lu badmood, dan gua bener-bener minta maaf. Janji deh, gua bakal lebih hati-hati biar ga keulang lagi.👍</p>
+</div>
+
+<!-- Floating hearts generator -->
+<script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 500);
+</script>
+
+<!-- Music: Tenxi - Bintang 5 -->
+<audio autoplay loop>
+    <source src="https://music.youtube.com/watch?v=VwprPxp5QdE" type="audio/mpeg">
+</audio>
+
 </body>
 </html>
